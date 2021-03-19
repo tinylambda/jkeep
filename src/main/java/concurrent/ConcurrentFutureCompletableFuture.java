@@ -1,9 +1,9 @@
-package concurrent.future;
+package concurrent;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-public class FutureCompletableFuture {
+public class ConcurrentFutureCompletableFuture {
     public static CompletableFuture<Integer> compute() {
         final CompletableFuture<Integer> future = new CompletableFuture<>();
         return future;
