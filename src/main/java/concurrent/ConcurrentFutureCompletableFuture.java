@@ -35,6 +35,7 @@ public class ConcurrentFutureCompletableFuture {
         new Client("Client2", f).start();
         System.out.println("waiting");
         f.complete(100);
+        System.out.println("press any key to exit");
         System.in.read();
     }
 }
