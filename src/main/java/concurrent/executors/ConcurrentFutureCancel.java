@@ -9,33 +9,56 @@ import java.util.concurrent.TimeUnit;
 
 
 public class ConcurrentFutureCancel {
+
+    static class MyTask implements Callable<Boolean> {
+        private String name;
+        private boolean stopped = true;
+
+        public MyTask(String name) {
+            this.name = name;
+        }
+
+        public boolean start() {
+            stopped = false;
+            return true;
+        }
+
+        public boolean stop() {
+            stopped = true;
+            return true;
+        }
+
+        @Override
+        public Boolean call() throws Exception {
+            while (!stopped) {
+                System.out.println("still working");
+                TimeUnit.SECONDS.sleep(1);
+            }
+            return true;
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newFixedThreadPool(8);
-        Future<Boolean> future = executorService.submit(new Callable<Boolean>() {
-            private boolean stop = false;
+        MyTask myTask = new MyTask("task 1");
+        boolean result = myTask.start();
+        assert result;
+        Future<Boolean> future = executorService.submit(myTask);
 
-            @Override
-            public Boolean call() throws Exception {
-                while (!stop) {
-                    System.out.println("still running in call");
-                    TimeUnit.SECONDS.sleep(1);
-                }
-                return true;
-            }
-        });
+        System.out.println("wait 5 seconds and stop myTask");
+        TimeUnit.SECONDS.sleep(5);
+        result = myTask.stop();
+        assert result;
 
-        System.out.println("got future: " + future);
-        int sleepTime = 10;
-        System.out.println("now sleep " + sleepTime + " seconds");
-        TimeUnit.SECONDS.sleep(sleepTime);
-        System.out.println("now cancel future");
-        future.cancel(true); // change to false to test
-        try {
-            System.out.println(future.get());
-        } catch (CancellationException e) {
-            System.out.println("good! cancelling the future works");
-        }
         executorService.shutdown();
         executorService.awaitTermination(1, TimeUnit.HOURS);
+
+        // now we can safely get result from future
+        result = future.get();
+        System.out.println("the result of future get is: " + result);
+        assert result;
+
+        System.out.println("done!");
+
     }
 }
