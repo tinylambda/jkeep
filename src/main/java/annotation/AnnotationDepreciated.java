@@ -1,6 +1,6 @@
-package annotations;
+package annotation;
 
-public class AnnotationsDepreciated {
+public class AnnotationDepreciated {
     static class Inner {
         @Deprecated
         public void doSomething() {
@@ -10,7 +10,7 @@ public class AnnotationsDepreciated {
 
     private final Inner inner;
 
-    public AnnotationsDepreciated(Inner inner) {
+    public AnnotationDepreciated(Inner inner) {
         this.inner = inner;
     }
 
@@ -20,7 +20,7 @@ public class AnnotationsDepreciated {
     }
 
     public static void main(String[] args) {
-        AnnotationsDepreciated annotationsDepreciated = new AnnotationsDepreciated(new Inner());
-        annotationsDepreciated.test();
+        AnnotationDepreciated annotationDepreciated = new AnnotationDepreciated(new Inner());
+        annotationDepreciated.test();
     }
 }

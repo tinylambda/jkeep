@@ -1,4 +1,4 @@
-package annotations;
+package annotation;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,7 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
-public class AnnotationsJacksonJsonProperty {
+public class AnnotationJacksonJsonProperty {
     static class Inner {
         private final String keyOne;
         private final String keyTwo;
@@ -34,7 +34,7 @@ public class AnnotationsJacksonJsonProperty {
     private Inner inner;
 
     @JsonCreator
-    public AnnotationsJacksonJsonProperty() {}
+    public AnnotationJacksonJsonProperty() {}
 
     public String getTrueName() {
         return trueName;
@@ -46,8 +46,8 @@ public class AnnotationsJacksonJsonProperty {
     }
 
     public static void main(String[] args) throws JsonProcessingException {
-        AnnotationsJacksonJsonProperty annotationsJacksonJsonProperty = new AnnotationsJacksonJsonProperty();
-        annotationsJacksonJsonProperty.setTrueName("GetUp");
-        System.out.println(new ObjectMapper().writeValueAsString(annotationsJacksonJsonProperty));
+        AnnotationJacksonJsonProperty annotationJacksonJsonProperty = new AnnotationJacksonJsonProperty();
+        annotationJacksonJsonProperty.setTrueName("GetUp");
+        System.out.println(new ObjectMapper().writeValueAsString(annotationJacksonJsonProperty));
     }
 }
