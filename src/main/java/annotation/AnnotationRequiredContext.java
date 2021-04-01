@@ -12,5 +12,5 @@ import java.lang.annotation.Target;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AnnotationRequiredContext {
-    String[] requiredContextNames();
+    String[] requiredContextNames() default {};
 }
