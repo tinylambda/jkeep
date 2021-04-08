@@ -25,12 +25,7 @@ public class GrpcClient {
                 HelloResponse response = stub.hello(HelloRequest.newBuilder().setFirstName("Pan").setLastName("Fei").build());
                 log.info(response.getGreeting());
             }
-            log.info("--------");
 
-            for (int i=0; i<10; i++) {
-                ListenableFuture<HelloResponse> future = stub2.hello(HelloRequest.newBuilder().setFirstName("Pan").setLastName("Fei").build());
-                log.info(future.get().getGreeting());
-            }
             log.info("done");
         } finally {
             if (channel != null) {
