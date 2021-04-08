@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 import com.example.grpc.gencode.HelloRequest;
 import com.example.grpc.gencode.HelloResponse;
 import com.example.grpc.gencode.HelloServiceGrpc;
-import com.google.common.util.concurrent.ListenableFuture;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;

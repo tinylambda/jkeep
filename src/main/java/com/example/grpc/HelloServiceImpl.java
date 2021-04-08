@@ -1,6 +1,5 @@
 package com.example.grpc;
 
-import java.util.List;
 import java.util.Random;
 
 import com.example.grpc.gencode.HelloRequest;
