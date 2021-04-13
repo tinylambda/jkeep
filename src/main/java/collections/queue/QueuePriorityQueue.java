@@ -6,51 +6,6 @@ import java.util.PriorityQueue;
 
 
 public class QueuePriorityQueue {
-    static class Task {
-        private static long seq = 0;
-
-        public int getPriority() {
-            return priority;
-        }
-
-        public void setPriority(int priority) {
-            this.priority = priority;
-        }
-
-        private int priority;
-        private String name;
-
-        public long getSeqNo() {
-            return seqNo;
-        }
-
-        public void setSeqNo(long seqNo) {
-            this.seqNo = seqNo;
-        }
-
-        private long seqNo;
-
-        private synchronized void increaseSeq() {
-            seq++;
-        }
-
-        public Task(int priority, String name) {
-            this.priority = priority;
-            this.name = name;
-            this.seqNo = seq;
-            increaseSeq();
-        }
-
-        @Override
-        public String toString() {
-            return "Task{" +
-                    "priority=" + priority +
-                    ", name='" + name + '\'' +
-                    ", seqNo=" + seqNo +
-                    '}';
-        }
-    }
-
     public static void main(String[] args) {
         PriorityQueue<Task> priorityQueue = new PriorityQueue(new Comparator() {
             @Override
