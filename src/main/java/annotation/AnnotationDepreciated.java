@@ -1,10 +1,13 @@
 package annotation;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class AnnotationDepreciated {
     static class Inner {
         @Deprecated
         public void doSomething() {
-            System.out.println("do something");
+            log.info("do something");
         }
     }
 

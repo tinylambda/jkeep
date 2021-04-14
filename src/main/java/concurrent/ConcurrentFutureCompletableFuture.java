@@ -3,6 +3,9 @@ package concurrent;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ConcurrentFutureCompletableFuture {
     public static CompletableFuture<Integer> compute() {
         final CompletableFuture<Integer> future = new CompletableFuture<>();
@@ -22,7 +25,7 @@ public class ConcurrentFutureCompletableFuture {
             @Override
             public void run() {
                 try {
-                    System.out.println(this.getName() + ": " + f.get());
+                    log.info(this.getName() + ": " + f.get());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -33,9 +36,9 @@ public class ConcurrentFutureCompletableFuture {
 
         new Client("Client1", f).start();
         new Client("Client2", f).start();
-        System.out.println("waiting");
+        log.info("waiting");
         f.complete(100);
-        System.out.println("press any key to exit");
+        log.info("press any key to exit");
         System.in.read();
     }
 }

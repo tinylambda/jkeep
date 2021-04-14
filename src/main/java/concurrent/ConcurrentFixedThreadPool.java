@@ -5,6 +5,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ConcurrentFixedThreadPool {
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(4);
@@ -14,7 +17,7 @@ public class ConcurrentFixedThreadPool {
                 public void run() {
                     Random random = new Random();
                     int s = random.nextInt(10);
-                    System.out.println(Thread.currentThread().getName() + " sleeping " + s);
+                    log.info(Thread.currentThread().getName() + " sleeping " + s);
                     try {
                         TimeUnit.SECONDS.sleep(s);
                     } catch (InterruptedException e) {
@@ -32,11 +35,11 @@ public class ConcurrentFixedThreadPool {
 
             }
 
-            System.out.println("put another task");
+            log.info("put another task");
             executorService.submit(new Runnable() {
                 @Override
                 public void run() {
-                    System.out.println("running 10");
+                    log.info("running 10");
                     try {
                         TimeUnit.SECONDS.sleep(10);
                     } catch (InterruptedException e) {
@@ -52,6 +55,6 @@ public class ConcurrentFixedThreadPool {
 
         }
 
-        System.out.println("back to main");
+        log.info("back to main");
     }
 }

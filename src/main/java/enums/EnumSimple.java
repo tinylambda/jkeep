@@ -1,6 +1,8 @@
 package enums;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class EnumSimple {
     enum POSSIBILITIES {
         GOOD,
@@ -14,12 +16,12 @@ public class EnumSimple {
     }
 
     public void showPossibilityValue() {
-        System.out.println(this.possibilities);
-        System.out.println(POSSIBILITIES.valueOf("BAD"));
+        log.info("" + this.possibilities);
+        log.info("" + POSSIBILITIES.valueOf("BAD"));
 
-        System.out.println("print all possibilities");
+        log.info("print all possibilities");
         for(POSSIBILITIES possibilities: POSSIBILITIES.values()) {
-            System.out.println(possibilities);
+            log.info("" + possibilities);
         }
     }
 

@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ListArrayListSort {
     public static void main(String[] args) {
         List<Map<String, Integer>> list = new ArrayList<>();
@@ -17,7 +20,7 @@ public class ListArrayListSort {
         }
         // print list items
         list.forEach(item -> {
-            System.out.println(item);
+            log.info("" + item);
         });
         // sort by value
         list.sort((m1, m2) -> {
@@ -31,9 +34,9 @@ public class ListArrayListSort {
                 return -1;
         });
 
-        System.out.println("sorted: ");
+        log.info("sorted: ");
         list.forEach(item -> {
-            System.out.println(item);
+            log.info("" + item);
         });
     }
 }

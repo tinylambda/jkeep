@@ -14,6 +14,9 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ConcurrentListenableFuture {
     public static void usingListenableFuture() throws InterruptedException {
         ListeningExecutorService service = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(8));
@@ -28,12 +31,12 @@ public class ConcurrentListenableFuture {
             Futures.addCallback(future, new FutureCallback<Integer>() {
                 @Override
                 public void onSuccess(@Nullable Integer result) {
-                    System.out.println("done: " + result);
+                    log.info("done: " + result);
                 }
 
                 @Override
                 public void onFailure(Throwable t) {
-                    System.out.println(t);
+                    log.error("error", t);
                 }
             }, service);
         }

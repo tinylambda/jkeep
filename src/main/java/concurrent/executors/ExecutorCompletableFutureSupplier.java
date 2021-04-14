@@ -7,6 +7,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ExecutorCompletableFutureSupplier {
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newFixedThreadPool(8);
@@ -15,14 +18,14 @@ public class ExecutorCompletableFutureSupplier {
                 TimeUnit.SECONDS.sleep(10);
                 return 100;
             } catch (Exception e) {
-                System.out.println("exception happens");
+                log.info("exception happens");
                 throw new CompletionException(e);
             }
         }, executorService);
 
         executorService.shutdown();
 
-        System.out.println("now waiting result:");
-        System.out.println(completableFuture.get());
+        log.info("now waiting result:");
+        log.info("" + completableFuture.get());
     }
 }

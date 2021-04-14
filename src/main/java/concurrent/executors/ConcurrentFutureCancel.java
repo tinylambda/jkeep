@@ -1,13 +1,14 @@
 package concurrent.executors;
 
 import java.util.concurrent.Callable;
-import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class ConcurrentFutureCancel {
 
     static class MyTask implements Callable<Boolean> {
@@ -31,7 +32,7 @@ public class ConcurrentFutureCancel {
         @Override
         public Boolean call() throws Exception {
             while (!stopped) {
-                System.out.println("still working");
+                log.info("still working");
                 TimeUnit.SECONDS.sleep(1);
             }
             return true;
@@ -45,7 +46,7 @@ public class ConcurrentFutureCancel {
         assert result;
         Future<Boolean> future = executorService.submit(myTask);
 
-        System.out.println("wait 5 seconds and stop myTask");
+        log.info("wait 5 seconds and stop myTask");
         TimeUnit.SECONDS.sleep(5);
         result = myTask.stop();
         assert result;
@@ -55,10 +56,10 @@ public class ConcurrentFutureCancel {
 
         // now we can safely get result from future
         result = future.get();
-        System.out.println("the result of future get is: " + result);
+        log.info("the result of future get is: " + result);
         assert result;
 
-        System.out.println("done!");
+        log.info("done!");
 
     }
 }

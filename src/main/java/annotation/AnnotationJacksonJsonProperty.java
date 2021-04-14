@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class AnnotationJacksonJsonProperty {
     static class Inner {
         private final String keyOne;
@@ -48,6 +50,6 @@ public class AnnotationJacksonJsonProperty {
     public static void main(String[] args) throws JsonProcessingException {
         AnnotationJacksonJsonProperty annotationJacksonJsonProperty = new AnnotationJacksonJsonProperty();
         annotationJacksonJsonProperty.setTrueName("GetUp");
-        System.out.println(new ObjectMapper().writeValueAsString(annotationJacksonJsonProperty));
+        log.info(new ObjectMapper().writeValueAsString(annotationJacksonJsonProperty));
     }
 }

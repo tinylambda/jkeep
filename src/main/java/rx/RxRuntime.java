@@ -2,7 +2,9 @@ package rx;
 
 
 import io.reactivex.rxjava3.core.Observable;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class RxRuntime {
     public static void main(String[] args) {
         Observable.create(emitter -> {
@@ -14,6 +16,6 @@ public class RxRuntime {
                     break;
                 }
             }
-        }).subscribe(System.out::println, Throwable::printStackTrace);
+        }).subscribe(item -> log.info(String.valueOf(item)), Throwable::printStackTrace);
     }
 }

@@ -7,7 +7,9 @@ import java.util.Map;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class StringFormat {
     public static void main(String[] args) throws Exception {
         String templateString = "Hello ${name} age is '${age}'";
@@ -17,8 +19,7 @@ public class StringFormat {
         map.put("age", "25");
 
         StringWriter writer = new StringWriter();
-//        System.out.println(template.getName());
         template.process(map, writer);
-        System.out.println(writer.toString());
+        log.info(writer.toString());
     }
 }

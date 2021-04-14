@@ -9,6 +9,9 @@ import org.bouncycastle.util.encoders.Hex;
 
 import com.google.common.hash.Hashing;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class HashSHA256 {
     private static String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
@@ -27,16 +30,16 @@ public class HashSHA256 {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] encodedHash = digest.digest(s.getBytes(StandardCharsets.UTF_8));
         String sha256hex = bytesToHex(encodedHash);
-        System.out.println(sha256hex);
+        log.info(sha256hex);
 
         sha256hex = Hashing.sha256().hashString(s, StandardCharsets.UTF_8).toString();
-        System.out.println(sha256hex);
+        log.info(sha256hex);
 
         sha256hex = DigestUtils.sha256Hex(s);
-        System.out.println(sha256hex);
+        log.info(sha256hex);
 
         byte hash[] = digest.digest(s.getBytes(StandardCharsets.UTF_8));
         sha256hex = new String(Hex.encode(hash));
-        System.out.println(sha256hex);
+        log.info(sha256hex);
     }
 }

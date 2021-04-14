@@ -4,7 +4,9 @@ package properties;
 import java.io.InputStream;
 import java.util.Properties;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class PropertiesLoad {
     private static final Properties hiveProperties = new Properties();
 
@@ -13,12 +15,12 @@ public class PropertiesLoad {
         try (InputStream in = PropertiesLoad.class.getClassLoader().getResourceAsStream(propertiesFileName)) {
             hiveProperties.load(in);
         } catch (Exception e) {
-            System.out.println("failed to load hive.properties: " + e);
+            log.info("failed to load hive.properties: " + e);
         }
     }
     public static void main(String[] args) {
-        System.out.println("size before loading: " + hiveProperties.size());
+        log.info("size before loading: " + hiveProperties.size());
         testLoad();
-        System.out.println("size after loading: " + hiveProperties.size());
+        log.info("size after loading: " + hiveProperties.size());
     }
 }

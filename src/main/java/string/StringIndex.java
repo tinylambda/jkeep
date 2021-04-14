@@ -1,5 +1,8 @@
 package string;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class StringIndex {
     public static String getFileType(String filename) {
         if ((filename != null) && (filename.length() > 0)) {
@@ -14,6 +17,6 @@ public class StringIndex {
     public static void main(String[] args) {
         String filename = "/tmp/a.zip";
         String fileType = getFileType(filename);
-        System.out.println(fileType);
+        log.info(fileType);
     }
 }

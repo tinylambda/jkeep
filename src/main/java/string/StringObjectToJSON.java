@@ -6,6 +6,9 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class StringObjectToJSON {
     public static void main(String[] args) {
 
@@ -15,9 +18,9 @@ public class StringObjectToJSON {
 
         Gson g = new Gson();
         String result = g.toJson(m);
-        System.out.println(result);
+        log.info(result);
 
         Map<String, String> deserialized = g.fromJson(result, Map.class);
-        System.out.println(deserialized);
+        log.info("" + deserialized);
     }
 }

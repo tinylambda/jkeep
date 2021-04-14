@@ -3,6 +3,9 @@ package enums;
 import java.util.Map;
 import java.util.HashMap;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public enum EnumMethod {
     GOOD(1, "Hello"),
     NORMAL(2, "World"),
@@ -34,7 +37,8 @@ public enum EnumMethod {
 
     public static void main(String[] args) {
         EnumMethod em = EnumMethod.GOOD;
-        System.out.println(em.getId());
-        System.out.println(EnumMethod.getById(em.getId()));
+        log.info("" + em.getId());
+        log.info("" + EnumMethod.getById(em.getId()));
+        log.info(EnumMethod.getById(2).toString());
     }
 }
