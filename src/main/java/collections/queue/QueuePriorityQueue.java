@@ -4,7 +4,9 @@ package collections.queue;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class QueuePriorityQueue {
     public static void main(String[] args) {
         PriorityQueue<Task> priorityQueue = new PriorityQueue(new Comparator() {
@@ -51,9 +53,9 @@ public class QueuePriorityQueue {
         priorityQueue.add(new Task(1, "task 1.8"));
         priorityQueue.add(new Task(0, "task 0"));
 
-        System.out.println(priorityQueue.size());
+        log.info("" + priorityQueue.size());
         while (!priorityQueue.isEmpty()) {
-            System.out.println(priorityQueue.poll());
+            log.info("" + priorityQueue.poll());
         }
     }
 }
