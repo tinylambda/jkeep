@@ -1,7 +1,9 @@
 package collections.queue;
 
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.PriorityQueue;
 
 import lombok.extern.slf4j.Slf4j;
@@ -54,6 +56,19 @@ public class QueuePriorityQueue {
         priorityQueue.add(new Task(0, "task 0"));
 
         log.info("" + priorityQueue.size());
+        while (!priorityQueue.isEmpty()) {
+            log.info("" + priorityQueue.poll());
+        }
+
+        // now test addAll
+        List<Task> tasks = new ArrayList<>();
+        tasks.add(new Task(10, "task 10"));
+        tasks.add(new Task(3, "task 3"));
+        tasks.add(new Task(1, "task 1.0"));
+        tasks.add(new Task(1, "task 1.1"));
+        log.info("" + priorityQueue.size());
+        log.info("now to see if add all works the right way");
+        priorityQueue.addAll(tasks);
         while (!priorityQueue.isEmpty()) {
             log.info("" + priorityQueue.poll());
         }
