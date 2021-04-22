@@ -16,5 +16,9 @@ public class IOURLPath {
 
         storagePath = "/home/felix/data/biz_101_data/";
         log.info(uri.resolve(storagePath).toString());
+
+        URI uri2 = new URI("/");
+        log.info(uri2.resolve("tmp/go/1/2/3").toString());
+        log.info(uri2.resolve("/tmp/go/1/2/3").toString());
     }
 }

@@ -4,14 +4,14 @@ package collections.queue;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.PriorityQueue;
+import java.util.concurrent.PriorityBlockingQueue;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class QueuePriorityQueue {
     public static void main(String[] args) {
-        PriorityQueue<Task> priorityQueue = new PriorityQueue(new Comparator() {
+        PriorityBlockingQueue<Task> priorityQueue = new PriorityBlockingQueue<Task>(8, new Comparator() {
             @Override
             public int compare(Object o1, Object o2) {
                 Task t1 = (Task) o1;
