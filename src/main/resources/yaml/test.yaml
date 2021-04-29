@@ -1,0 +1,7 @@
+match_meta:
+  t1:
+     match_table: table1
+     match_column: col1
+  t2:
+     match_table: table1
+     match_column: col2
