@@ -12,4 +12,6 @@ public class Meta {
     static class C {
         public static final String x = "go";
     }
+
+    public static final String X = "hello world.";
 }
