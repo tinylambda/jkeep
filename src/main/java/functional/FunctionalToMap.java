@@ -39,5 +39,9 @@ public class FunctionalToMap {
 
         Map<String, Point> map = points.stream().collect(Collectors.toMap(item -> item.name, item->item));
         log.info("result is {}", map);
+
+        points.clear();
+        map = points.stream().collect(Collectors.toMap(item -> item.name, item->item));
+        log.info("result is {}", map);  // will be an empty map
     }
 }
