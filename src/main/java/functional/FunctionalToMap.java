@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class FunctionalToMap {
+    @Data
     static class Point {
         private String name;
         private int x;
@@ -40,8 +42,11 @@ public class FunctionalToMap {
         Map<String, Point> map = points.stream().collect(Collectors.toMap(item -> item.name, item->item));
         log.info("result is {}", map);
 
+        map = points.stream().collect(Collectors.toMap(Point::getName, item -> item));
+        log.info("result is {}", map);
+
         points.clear();
-        map = points.stream().collect(Collectors.toMap(item -> item.name, item->item));
+        map = points.stream().collect(Collectors.toMap(Point::getName, item->item));
         log.info("result is {}", map);  // will be an empty map
     }
 }
