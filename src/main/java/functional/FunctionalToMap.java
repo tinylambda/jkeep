@@ -1,6 +1,7 @@
 package functional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -48,5 +49,18 @@ public class FunctionalToMap {
         points.clear();
         map = points.stream().collect(Collectors.toMap(Point::getName, item->item));
         log.info("result is {}", map);  // will be an empty map
+
+        Point p3 = new Point("p1", 2, 3);
+        Point p4 = new Point("p2", 11, 21);
+        points.add(p1);
+        points.add(p2);
+        points.add(p3);
+        points.add(p4);
+
+        Map<String, List<Point>> pointListByName = new HashMap<>();
+        for (Point point : points) {
+            pointListByName.computeIfAbsent(point.getName(), k -> new ArrayList<>()).add(point);
+        }
+        log.info("pointListByName is {}", pointListByName);
     }
 }
