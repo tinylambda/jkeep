@@ -10,5 +10,8 @@ public class StringJoin {
         String[] parts = {"hello", "world", "!"};
         log.info(String.join(" ", parts));
         log.info(Joiner.on(" ").join(parts));
+
+        Object[] objects = {"hello", 1, 2, 3.4, "world"};
+        log.info(Joiner.on("&").join(objects));
     }
 }
