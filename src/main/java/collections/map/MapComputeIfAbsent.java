@@ -14,5 +14,6 @@ public class MapComputeIfAbsent {
         log.info("the data is {}", integer);
         integer = map.computeIfAbsent("x", k -> 9999);
         log.info("the data is {}", integer);
+        log.info("{}", map);
     }
 }
