@@ -27,7 +27,8 @@ public class StreamToMap {
                 new Point("p2", 1, 2),
                 new Point("p3", 11, 22)
         );
-        Map<String, Point> pointMap = points.stream().collect(Collectors.toMap(Point::getName, point->point));
+        Map<String, Point> pointMap = points.stream()
+                .collect(Collectors.toMap(Point::getName, point->point));
         log.info("pointMap is {}", pointMap);
     }
 }
