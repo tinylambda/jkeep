@@ -28,5 +28,9 @@ public class GenericAutoCast {
         log.info("{}", genericAutoCast.<Long>cacheGet("long"));
         log.info("{}", genericAutoCast.<Integer>cacheGet("integer"));
         log.info("{}", genericAutoCast.<String>cacheGet("string"));
+        log.info("{}", genericAutoCast.<Integer>cacheGet("string")); // no error
+
+        Integer integer = genericAutoCast.<Integer>cacheGet("string");  // cast exception
+        log.info("{}", integer);
     }
 }
