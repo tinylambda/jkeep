@@ -1,6 +1,5 @@
 package json;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -31,7 +30,7 @@ public class JSONFromObject {
         String jsonString = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonFromObject);
         log.info(jsonString);
 
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map;
         map = objectMapper.readValue(jsonString, new TypeReference<Map<String, Object>>() {});
         log.info(map.toString());
         log.info(map.get("id").toString());
