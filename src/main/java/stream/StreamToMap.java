@@ -25,6 +25,7 @@ public class StreamToMap {
         List<Point> points = Lists.newArrayList(
                 new Point("p1", 10, 20),
                 new Point("p2", 1, 2),
+//                new Point("p2", 1, 2),  // Note: duplicate key will trigger IllegalStateException
                 new Point("p3", 11, 22)
         );
         Map<String, Point> pointMap = points.stream()
