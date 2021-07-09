@@ -1,7 +1,6 @@
 package stream;
 
-
-import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.partitioningBy;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +12,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class StreamGroupingBy {
+public class StreamPartitioningBy {
     @Data
     @AllArgsConstructor
     static class Point {
@@ -31,9 +30,8 @@ public class StreamGroupingBy {
                 new Point("y", 70, 80)
         );
 
-        Map<String, List<Point>> map = points.stream().collect(groupingBy(Point::getName));
-        log.info("{}", map);
-        Map<Boolean, List<Point>> groups = points.stream().collect(groupingBy(item -> item.getX() > 100));
-        log.info("{}", groups);  // key not exists: true
+        Map<Boolean, List<Point>>
+                groups = points.stream().collect(partitioningBy(item -> item.getX() > 1000));
+        log.info("{}", groups);  // key exists: true
     }
 }

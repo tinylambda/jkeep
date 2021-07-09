@@ -1,6 +1,8 @@
 package stream;
 
 
+import static java.util.function.Function.identity;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -29,7 +31,7 @@ public class StreamToMap {
                 new Point("p3", 11, 22)
         );
         Map<String, Point> pointMap = points.stream()
-                .collect(Collectors.toMap(Point::getName, point->point));
+                .collect(Collectors.toMap(Point::getName, identity()));
         log.info("pointMap is {}", pointMap);
     }
 }
