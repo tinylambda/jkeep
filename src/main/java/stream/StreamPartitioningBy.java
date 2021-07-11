@@ -22,13 +22,7 @@ public class StreamPartitioningBy {
     }
 
     public static void main(String[] args) {
-        List<Point> points = Lists.newArrayList(
-                new Point("x", 1, 2),
-                new Point("x", 10, 20),
-                new Point("x", 100, 200),
-                new Point("y", 7, 8),
-                new Point("y", 70, 80)
-        );
+        List<Point> points = Lists.newArrayList();
 
         Map<Boolean, List<Point>>
                 groups = points.stream().collect(partitioningBy(item -> item.getX() > 1000));
