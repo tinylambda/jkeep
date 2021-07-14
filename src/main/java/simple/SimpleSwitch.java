@@ -2,12 +2,30 @@ package simple;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class SimpleSwitch {
 
     private void testSwitch(int i) {
+        switch (i) {
+            case 1:
+            case 2:
+            case 3:
+                log.info("{} -> 1,2,3", i);
+                break;
+            case 4:
+            case 5:
+                log.info("{} -> 4,5", i);
+                break;
+            default:
+                log.info("{} -> others", i);
+        }
+    }
+
+    private void testSwitchObject(Integer i) {
         switch (i) {
             case 1:
             case 2:
@@ -31,5 +49,7 @@ public class SimpleSwitch {
             int seq = random.nextInt(10);
             simpleSwitch.testSwitch(seq);
         }
+
+        simpleSwitch.testSwitchObject(null);  // this will trigger NPE
     }
 }
