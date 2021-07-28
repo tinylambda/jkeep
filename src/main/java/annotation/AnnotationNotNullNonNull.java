@@ -2,16 +2,19 @@ package annotation;
 
 
 import javax.annotation.Nonnull;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Service
 public class AnnotationNotNullNonNull {
-    private String name=null;
-    private Integer age=null;
+    @NotNull private String name;
+    private Integer age;
 
-    @NotNull
     public String getName() {
         return name;
     }
@@ -22,9 +25,7 @@ public class AnnotationNotNullNonNull {
     }
 
     public static void main(String[] args) {
-        AnnotationNotNullNonNull object = new AnnotationNotNullNonNull();
-        object.name = "felix";
-        object.age = 19;
+        @Valid AnnotationNotNullNonNull object = new AnnotationNotNullNonNull();
         log.info("{}", object.getName());
         log.info("{}", object.getAge());
     }
