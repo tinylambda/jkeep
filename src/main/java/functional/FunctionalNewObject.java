@@ -1,6 +1,7 @@
 package functional;
 
-import java.util.ArrayList;
+import static com.google.common.collect.Lists.newArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,8 +32,8 @@ public class FunctionalNewObject
     }
 
     public static void main(String[] args) {
-        List<Integer> xList = new ArrayList<>();
-        List<Integer> yList = new ArrayList<>();
+        List<Integer> xList = newArrayList();
+        List<Integer> yList = newArrayList();
         xList.add(1);
         xList.add(2);
         xList.add(3);

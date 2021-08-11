@@ -11,7 +11,7 @@ public class UtilOptional {
         Optional<String> emptyString = Optional.empty();
         log.info("{}", emptyString);
         log.info("{}", emptyString.isPresent());
-        log.info("{}", emptyString.orElseGet(() -> "abc"));
+        log.info("{}", emptyString.orElse("abc"));
         emptyString.ifPresent(log::info);
 
         emptyString = Optional.of("def");
