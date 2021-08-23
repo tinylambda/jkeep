@@ -20,3 +20,14 @@ message HelloResponse {
 service HelloService {
   rpc hello(HelloRequest) returns (HelloResponse);
 }
+
+enum OLD_GENDER {
+  NONE = 0;
+  MAN = 1;
+  WOMAN = 2;
+}
+
+enum GENDER {
+  MALE = 0;
+  FEMALE = 1;
+}
