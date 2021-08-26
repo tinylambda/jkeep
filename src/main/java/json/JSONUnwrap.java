@@ -1,5 +1,12 @@
 package json;
 
+import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Maps.newHashMap;
+
+import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -35,6 +42,24 @@ public class JSONUnwrap {
     }
 
     static class UnwrapJson {
+        private Map<String, String> map = newHashMap();
+
+        public UnwrapJson() {
+            add("x", "y");
+            add("a", "b");
+            add("m", "n");
+        }
+
+        @JsonAnySetter
+        public void add(String key, String value) {
+            map.put(key, value);
+        }
+
+        @JsonAnyGetter
+        public Map<String, String> getMap() {
+            return map;
+        }
+
         @JsonUnwrapped
         public DataOne getDataOne() {
             return new DataOne();
@@ -43,6 +68,15 @@ public class JSONUnwrap {
         @JsonUnwrapped
         public DataTwo getDataTwo() {
             return new DataTwo();
+        }
+
+        // JsonUnwrapped not work for map
+        @JsonUnwrapped
+        public Map<String, Object> getDataThree() {
+            Map<String, Object> map = newHashMap();
+            map.put("name", "Felix");
+            map.put("list", newArrayList("x", "y", "z"));
+            return map;
         }
     }
 
