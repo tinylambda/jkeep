@@ -21,5 +21,8 @@ public class StringFormat {
         StringWriter writer = new StringWriter();
         template.process(map, writer);
         log.info(writer.toString());
+
+        String builtinFormat = String.format("hello %s", "中国人");
+        log.info("{}", builtinFormat);
     }
 }
