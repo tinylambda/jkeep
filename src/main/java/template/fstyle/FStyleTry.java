@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FStyleTry {
     public static void main(String[] args) {
-        String text = "my name is {{name}}, my age is {{age}}, home is {{address2}}, {{  name  }} is '{{    name }}'";
+        String text = "{{xxx}} my name is {{name}}, my age is {{age}}, home is {{address2}}, {{  name  }} is '{{    name }}'";
         Matcher matcher = Pattern.compile("\\{\\{\\s*([\\S]+)\\s*}}").matcher(text);
         int i = 0;
         List<String> replaces = newArrayList();
