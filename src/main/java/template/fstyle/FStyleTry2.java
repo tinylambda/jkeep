@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FStyleTry2 {
     public static void main(String[] args) {
-        String text = "$xxx my name is $name, my age is $age, home is $address2, $name is '$name'";
+        String text = "$xxx my name is $name, my age is $age, home is $address2, $name is '$$name' get_json_object(xx, '$.a')";
         Matcher matcher = Pattern.compile("\\$([a-zA-Z_0-9]+)").matcher(text);
         int i = 0;
         List<String> replaces = newArrayList();
