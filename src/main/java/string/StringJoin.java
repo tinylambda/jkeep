@@ -1,5 +1,8 @@
 package string;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 import com.google.common.base.Joiner;
 
 import lombok.extern.slf4j.Slf4j;
@@ -13,5 +16,11 @@ public class StringJoin {
 
         Object[] objects = {"hello", 1, 2, 3.4, "world"};
         log.info(Joiner.on("&").join(objects));
+
+        objects = new Object[] {"hello", 1, 2, 3.4, "world", null};
+
+        // null value will cause join throw NPE
+        objects = Arrays.stream(objects).filter(Objects::nonNull).toArray();
+        log.info(Joiner.on(";").join(objects));
     }
 }
