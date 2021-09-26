@@ -1,12 +1,16 @@
 package utilclass;
 
 
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
+import java.util.Random;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class UtilOptional {
+    private static final Random RANDOM = new Random();
+
     public static void main(String[] args) {
         Optional<String> emptyString = Optional.empty();
         log.info("{}", emptyString);
@@ -29,5 +33,12 @@ public class UtilOptional {
         }).ifPresent(log::info);
 
 //        emptyString = Optional.of(null);  // NPE
+
+        byte[] bytes = null;
+        if (RANDOM.nextInt(10) % 2 == 0) {
+            bytes = "good".getBytes(StandardCharsets.UTF_8);
+        }
+        int length = Optional.ofNullable(bytes).orElse("".getBytes(StandardCharsets.UTF_8)).length;
+        log.info("{}", length);
     }
 }
