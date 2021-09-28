@@ -15,12 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RxFlowable {
     public static void main(String[] args) throws InterruptedException {
-        Flowable.create(new FlowableOnSubscribe<String>() {
-            @Override
-            public void subscribe(FlowableEmitter<String> emitter) throws Exception {
-                for (int i=0; i<200; i++) {
-                    emitter.onNext("str" + i);
-                }
+        Flowable.create((FlowableOnSubscribe<String>) emitter -> {
+            for (int i=0; i<200; i++) {
+                emitter.onNext("str" + i);
             }
         }, BackpressureStrategy.ERROR)
                 .subscribeOn(Schedulers.io())
