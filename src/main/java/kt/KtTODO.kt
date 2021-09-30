@@ -1,10 +1,5 @@
 package kt
 
-/**
- * @author panfei <panfei@kuaishou.com>
- * Created on 2021-09-26
- */
-
 interface I {
     fun fun1(name: String)
     fun fun2(name: String)
