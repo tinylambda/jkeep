@@ -29,5 +29,6 @@ public class DatetimeDelta {
         dateOne = new GregorianCalendar(2021, Calendar.OCTOBER, 21).getTime();
         dateTwo = new GregorianCalendar(2021, Calendar.OCTOBER, 27).getTime();
         log.info("{} days passed", getDateDiff(dateOne, dateTwo, TimeUnit.DAYS));
+        log.info("{}", System.currentTimeMillis());
     }
 }
