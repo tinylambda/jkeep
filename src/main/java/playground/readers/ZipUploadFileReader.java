@@ -1,5 +1,6 @@
 package playground.readers;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;
 
@@ -10,9 +11,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.SequenceInputStream;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -35,6 +38,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ZipUploadFileReader extends UploadFileReader {
     private static final String SAMPLE_FILE = "/tmp/test.zip";
     private static final Set<String> SKIP_PREFIXES = newHashSet("__MACOSX");
+    private static final List<Charset> TRY_CODECS = newArrayList(StandardCharsets.UTF_8, Charset.forName("GBK"));
 
     private static final Predicate<ZipEntry> ZIP_FILTER = zipEntry -> {
         String name = zipEntry.getName();
@@ -46,7 +50,15 @@ public class ZipUploadFileReader extends UploadFileReader {
     @Override
     public BufferedReader createReader(String filename) {
         List<InputStream> inputStreams = newArrayList();
-        try (ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(filename))) {
+        try (ZipInputStream zipInputStream = TRY_CODECS.stream().map(codec -> {
+            try {
+                log.info("try {}", codec);
+                return new ZipInputStream(new FileInputStream(filename), codec);
+            } catch (Exception e) {
+                return null;
+            }
+        }).filter(Objects::nonNull).findFirst().orElse(null)) {
+            checkNotNull(zipInputStream, "");
             Optional<ZipFile> zipFile = Optional.of(new ZipFile(filename));
             ZipEntry zipEntry;
             while ((zipEntry = zipInputStream.getNextEntry()) != null) {
