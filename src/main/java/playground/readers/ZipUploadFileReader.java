@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Predicate;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -50,10 +51,12 @@ public class ZipUploadFileReader extends UploadFileReader {
     @Override
     public BufferedReader createReader(String filename) {
         List<InputStream> inputStreams = newArrayList();
-        try (ZipInputStream zipInputStream = TRY_CODECS.stream().map(codec -> {
+        AtomicReference<Charset> usingCharset = new AtomicReference<>();
+        try (ZipInputStream zipInputStream = TRY_CODECS.stream().map(charset -> {
             try {
-                log.info("try {}", codec);
-                return new ZipInputStream(new FileInputStream(filename), codec);
+                log.info("try {}", charset);
+                usingCharset.set(charset);
+                return new ZipInputStream(new FileInputStream(filename), charset);
             } catch (Exception e) {
                 return null;
             }
@@ -66,9 +69,9 @@ public class ZipUploadFileReader extends UploadFileReader {
                     continue;
                 }
                 inputStreams.add(zipFile.get().getInputStream(zipEntry));
-                inputStreams.add(new ByteArrayInputStream("\n".getBytes(StandardCharsets.UTF_8)));
+                inputStreams.add(new ByteArrayInputStream("\n".getBytes(usingCharset.get())));
             }
-            return new BufferedReader(new InputStreamReader(new SequenceInputStream(Collections.enumeration(inputStreams)), StandardCharsets.UTF_8));
+            return new BufferedReader(new InputStreamReader(new SequenceInputStream(Collections.enumeration(inputStreams)), usingCharset.get()));
         } catch (IOException e) {
             log.error("error creating zip reader", e);
         }
