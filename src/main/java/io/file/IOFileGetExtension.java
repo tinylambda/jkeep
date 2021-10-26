@@ -14,5 +14,9 @@ public class IOFileGetExtension {
         String filename = "hello.txt";
         String ext = FilenameUtils.getExtension(filename);
         log.info("{}", ext);
+
+        filename = "hello";
+        ext = FilenameUtils.getExtension(filename);
+        log.info("{}", ext);
     }
 }
