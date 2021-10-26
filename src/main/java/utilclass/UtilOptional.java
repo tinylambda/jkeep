@@ -40,5 +40,12 @@ public class UtilOptional {
         }
         int length = Optional.ofNullable(bytes).orElse("".getBytes(StandardCharsets.UTF_8)).length;
         log.info("{}", length);
+
+        String info = null;
+        if (RANDOM.nextInt(10) % 2 == 0) {
+            info = "good";
+        }
+
+        log.info("{}", Optional.ofNullable(info).map(Object::toString).orElse("default string"));
     }
 }
