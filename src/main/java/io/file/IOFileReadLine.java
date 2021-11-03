@@ -18,7 +18,7 @@ public class IOFileReadLine {
         InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-        String line = null;
+        String line;
         while ((line = bufferedReader.readLine()) != null) {
             log.info(line);
         }
