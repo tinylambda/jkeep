@@ -16,11 +16,12 @@ public class IOFileReadLine {
         log.info("input io.file is " + filePath.toString());
         FileInputStream fileInputStream = new FileInputStream(filePath.toString());
         InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            log.info(line);
+        try (BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                log.info(line);
+            }
         }
     }
 }
