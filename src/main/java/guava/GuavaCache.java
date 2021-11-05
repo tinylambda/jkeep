@@ -23,27 +23,19 @@ public class GuavaCache {
             });
     private static final Cache<String, Object> MAXSIZE_CACHE = CacheBuilder.newBuilder()
             .maximumSize(5)
-            .removalListener(notification -> {
-                log.info("{} = {} removed", notification.getKey(), notification.getValue());
-            }).build();
+            .removalListener(notification -> log.info("{} = {} removed", notification.getKey(), notification.getValue())).build();
     private static final Cache<String, Object> EXPIRE_CACHE = CacheBuilder.newBuilder()
             .expireAfterWrite(5, TimeUnit.SECONDS)
             .concurrencyLevel(1)
-            .removalListener(notification -> {
-                log.info("{} = {} removed", notification.getKey(), notification.getValue());
-            }).build();
+            .removalListener(notification -> log.info("{} = {} removed", notification.getKey(), notification.getValue())).build();
     private static final Cache<String, Object> WEAK_KEY_CACHE = CacheBuilder.newBuilder()
             .concurrencyLevel(1)
             .weakKeys()
-            .removalListener(notification -> {
-                log.info("{} = {} removed", notification.getKey(), notification.getValue());
-            }).build();
+            .removalListener(notification -> log.info("{} = {} removed", notification.getKey(), notification.getValue())).build();
     private static final Cache<String, Object> WEAK_VALUE_CACHE = CacheBuilder.newBuilder()
             .concurrencyLevel(1)
             .weakValues()
-            .removalListener(notification -> {
-                log.info("{} = {} removed", notification.getKey(), notification.getValue());
-            }).build();
+            .removalListener(notification -> log.info("{} = {} removed", notification.getKey(), notification.getValue())).build();
 
     private static void testLoadingCache() throws ExecutionException {
         log.info("{}", LOADING_CACHE.get("k1"));
