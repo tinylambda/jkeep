@@ -18,22 +18,22 @@ public class RxInterval {
                 .subscribe(new Observer<Long>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
-                        log.info("tag", "start");
+                        log.info("tag {}", "start");
                     }
 
                     @Override
                     public void onNext(@NonNull Long aLong) {
-                        log.info("tag", "onNext: " + aLong);
+                        log.info("tag {}", "onNext: " + aLong);
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        log.info("tag", "error: " + e.getMessage());
+                        log.info("tag {}", "error: " + e.getMessage());
                     }
 
                     @Override
                     public void onComplete() {
-                        log.info("tag", "onComplete");
+                        log.info("tag {}", "onComplete");
                     }
                 });
         TimeUnit.SECONDS.sleep(10);
