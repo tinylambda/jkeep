@@ -1,7 +1,9 @@
 points:
   - x: 1000
     y: 2000
+    marked: false
   - x: 100
     y: 200
+    marked: true
   - x: 12
     y: 17
