@@ -7,3 +7,6 @@ points:
     marked: true
   - x: 12
     y: 17
+    extra:
+      x_msg: hello x
+      y_msg: hello y

@@ -1,6 +1,9 @@
 package string;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import com.google.common.base.Joiner;
@@ -22,5 +25,9 @@ public class StringJoin {
         // null value will cause join throw NPE
         objects = Arrays.stream(objects).filter(Objects::nonNull).toArray();
         log.info(Joiner.on(";").join(objects));
+
+        // Join just one element
+        List<String> items = newArrayList("hello");
+        log.info("join by OR: {}", Joiner.on(" OR ").join(items));
     }
 }

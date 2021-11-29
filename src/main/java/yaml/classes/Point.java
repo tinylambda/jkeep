@@ -1,5 +1,7 @@
 package yaml.classes;
 
+import java.util.Map;
+
 import lombok.Data;
 
 /**
@@ -11,4 +13,5 @@ public class Point {
     private int x;
     private int y;
     private boolean marked;
+    private Map<String, String> extra;
 }
