@@ -1,5 +1,7 @@
 package template.freemarker;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,4 +16,5 @@ import lombok.NoArgsConstructor;
 public class FreemarkerSimpleContext {
     private Integer x;
     private Integer y;
+    List<String> items;
 }

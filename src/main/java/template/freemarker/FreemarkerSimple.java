@@ -1,15 +1,20 @@
 package template.freemarker;
 
-import java.io.IOException;
-import java.io.Writer;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.collect.Lists.newArrayList;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Writer;
+import java.net.URL;
+import java.nio.charset.Charset;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.StringBuilderWriter;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,8 +52,11 @@ public class FreemarkerSimple {
     }
 
     public static void main(String[] args) throws IOException {
-        FreemarkerSimpleContext freemarkerSimpleContext = new FreemarkerSimpleContext(100, 200);
-        FreemarkerSimple freemarkerSimple = FreemarkerSimple.of("x: ${x}, y: ${y}");
+        FreemarkerSimpleContext freemarkerSimpleContext = new FreemarkerSimpleContext(100, 200, newArrayList("a", "b", "c"));
+
+        URL url = FreemarkerSimple.class.getClassLoader().getResource("fm/simple.ftl");
+        checkNotNull(url, "url is null");
+        FreemarkerSimple freemarkerSimple = FreemarkerSimple.of(IOUtils.toString(url, Charset.defaultCharset()));
         log.info("{}", freemarkerSimple.render(freemarkerSimpleContext));
     }
 }
