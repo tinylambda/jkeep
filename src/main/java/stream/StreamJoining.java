@@ -13,5 +13,10 @@ public class StreamJoining {
                .filter(Objects::nonNull)
                .collect(Collectors.joining(";"));
        log.info("{}", result);
+
+       result = Stream.<String>of(null, null)
+               .filter(Objects::nonNull)
+               .collect(Collectors.joining(";"));
+       log.info("hi:{}", result);
     }
 }
