@@ -17,6 +17,16 @@ public class BasicReverseList {
          private Node next;
     }
 
+    static Node reverseRecursive(Node head) {
+        if (head == null || head.getNext() == null) {
+            return head;
+        }
+        Node newHead = reverseRecursive(head.getNext());
+        head.getNext().setNext(head);
+        head.setNext(null);
+        return newHead;
+    }
+
     static Node reverse(Node head) {
         Node currentNode = head.getNext();  // the node right after the head
 
@@ -80,7 +90,10 @@ public class BasicReverseList {
 
         log.info("\n\nthe reversed list: \n");
 
-        Node newHead = reverse(head);
-        printList(newHead);
+//        Node newHead = reverse(head);
+//        printList(newHead);
+
+        Node newHead2 = reverseRecursive(head);
+        printList(newHead2);
     }
 }
